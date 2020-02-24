@@ -1,0 +1,102 @@
+import numpy as np
+import pandas as pd
+
+col_dict = {'issue_d': 'datetime64[ns]',
+                 'earliest_cr_line': 'datetime64[ns]',
+                 'last_pymnt_d': 'datetime64[ns]',
+                 'next_pymnt_d': 'datetime64[ns]',
+                 'last_credit_pull_d': 'datetime64[ns]',
+                 'acc_now_delinq': 'float64',
+                 'addr_state': 'O',
+                 'all_util': 'float64',
+                 'annual_inc': 'float64',
+                 'annual_inc_joint': 'float64',
+                 'application_type': 'O',
+                 'collection_recovery_fee': 'float64',
+                 'collections_12_mths_ex_med': 'float64',
+                 'delinq_2yrs': 'float64',
+                 'desc': 'O',
+                 'dti': 'float64',
+                 'dti_joint': 'float64',
+                 'emp_length': 'O',
+                 'emp_title': 'O',
+                 'funded_amnt': 'float64',
+                 'funded_amnt_inv': 'float64',
+                 'grade': 'O',
+                 'home_ownership': 'O',
+                 'id': 'int64',
+                 'il_util': 'float64',
+                 'initial_list_status': 'O',
+                 'inq_fi': 'float64',
+                 'inq_last_12m': 'float64',
+                 'inq_last_6mths': 'float64',
+                 'installment': 'float64',
+                 'int_rate': 'float64',
+                 'last_pymnt_amnt': 'float64',
+                 'loan_amnt': 'float64',
+                 'max_bal_bc': 'float64',
+                 'member_id': 'int64',
+                 'mths_since_last_delinq': 'float64',
+                 'mths_since_last_major_derog': 'float64',
+                 'mths_since_last_record': 'float64',
+                 'mths_since_rcnt_il': 'float64',
+                 'open_acc': 'float64',
+                 'open_acc_6m': 'float64',
+                 'open_il_12m': 'float64',
+                 'open_il_24m': 'float64',
+                 'open_il_6m': 'float64',
+                 'open_rv_12m': 'float64',
+                 'open_rv_24m': 'float64',
+                 'out_prncp': 'float64',
+                 'out_prncp_inv': 'float64',
+                 'policy_code': 'float64',
+                 'pub_rec': 'float64',
+                 'purpose': 'O',
+                 'pymnt_plan': 'O',
+                 'recoveries': 'float64',
+                 'revol_bal': 'float64',
+                 'revol_util': 'float64',
+                 'sub_grade': 'O',
+                 'term': 'O',
+                 'title': 'O',
+                 'tot_coll_amt': 'float64',
+                 'tot_cur_bal': 'float64',
+                 'total_acc': 'float64',
+                 'total_bal_il': 'float64',
+                 'total_cu_tl': 'float64',
+                 'total_pymnt': 'float64',
+                 'total_pymnt_inv': 'float64',
+                 'total_rec_int': 'float64',
+                 'total_rec_late_fee': 'float64',
+                 'total_rec_prncp': 'float64',
+                 'total_rev_hi_lim': 'float64',
+                 'verification_status': 'O',
+                 'verification_status_joint': 'O',
+                 'zip_code': 'O'}
+
+path1="C:/Users/sawacha/Desktop/Transition and stuff/DSP 19/Project/Python Project - Bank Lending/XYZCORP_LENDINGDATA.csv"
+
+data_raw = pd.read_csv(path1, dtype=col_dict, low_memory=False)
+
+data_raw= data_raw.drop(columns="default_ind")
+
+data_raw.head()
+
+data_raw.info()
+
+# Create pickle file for raw data
+
+import pickle
+path="C:/Users/sawacha/Desktop/Transition and stuff/DSP 19/Project/raw/data"
+with open(path, 'wb') as file:
+    pickle.dump(data_raw, file)
+	
+# open pickle file for raw data
+
+with open(path, 'rb') as file:
+    data = pickle.load(file)
+	
+	
+data.head()
+
+data.info()
